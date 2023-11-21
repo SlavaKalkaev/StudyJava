@@ -1,5 +1,7 @@
 public class GitTraining {
-    public void printing(){
+    public static void printing(){
+        System.out.println("hello world");
+        System.out.println("hello world");
         System.out.println("hello world");
     }
 
@@ -8,5 +10,9 @@ public class GitTraining {
     }
     public  void pipisa(){
         System.out.println("abracadabra");
+    }
+
+    public static void main(String[] args) {
+        printing();
     }
 }
