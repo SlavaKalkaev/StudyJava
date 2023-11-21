@@ -7,6 +7,7 @@ public class GitTraining {
         System.out.println("hrfew,kfwemvwo");
         System.out.println("dsafbavaiopjvqniuanokcaio");
         System.out.println("dsahfbsafnasklkfnasj");
+        System.out.println("fdashgvabdjnkflm");
     }
 
     public void printHui() {
