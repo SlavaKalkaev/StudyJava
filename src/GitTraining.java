@@ -7,4 +7,7 @@ public class GitTraining {
     public void printHui() {
         System.out.println("hui");
     }
+    public  void pipisa(){
+        System.out.println("abracadabra");
+    }
 }
