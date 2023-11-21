@@ -5,6 +5,7 @@ public class GitTraining {
         System.out.println("hello world");
         System.out.println("hrloefowemfw");
         System.out.println("hrfew,kfwemvwo");
+        System.out.println("dsafbavaiopjvqniuanokcaio");
     }
 
     public void printHui() {
