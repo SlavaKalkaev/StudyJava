@@ -6,9 +6,17 @@ public abstract class Animal {
         this.poroda = poroda;
     }
 
-    public abstract void makeNoise() ;
-    public abstract void eat();
-    public abstract String getDescription();
+    public  void makeNoise(){
+        System.out.println("sound");
+    } ;
+    public  void eat(){
+        System.out.println("food");
+    };
+
+    public  String getDescription() {
+        return "1";
+    }
+            ;
 
 
 }
@@ -21,9 +29,10 @@ class Pi{
         for (Animal animal : animals){
             veterinar.treetAnimal(animal);
         }
-        animals[0].eat();
-        animals[0].makeNoise();
-        animals[1].getDescription();
+        for (Animal animal : animals){
+            animal.makeNoise();
+            animal.eat();
+        }
     }
 
     }
