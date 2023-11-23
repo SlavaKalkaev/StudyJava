@@ -8,6 +8,6 @@ public class Veterinar {
     }
 
 public void treetAnimal(Animal animal){
-    System.out.println(animal);
+        System.out.println(animal.name+ "  " + animal.poroda + "  " +  animal.getDescription());
 }
 }
