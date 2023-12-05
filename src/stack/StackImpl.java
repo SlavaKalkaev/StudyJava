@@ -7,7 +7,6 @@ public class StackImpl implements StackInterface {
     private Node top;
     private int size;
 
-    private int min_value;
 
     public StackImpl() {
         this.top = null;
@@ -26,9 +25,7 @@ public class StackImpl implements StackInterface {
 
     @Override
     public int push(int x) {
-        Node node = new Node();
-            node.data = x;
-            node.next = top;
+        Node node = new Node(x,top);
             top = node;
             this.size ++;
         return x;
@@ -36,23 +33,29 @@ public class StackImpl implements StackInterface {
 
     @Override //удaление из стека
     public int pop() {
+        int currentHead = Integer.MIN_VALUE;
         if (isEmpty()) {
             System.out.println("nothing added in stack"
             );
         }
         else {
-            min_value = top.data;
+
+            currentHead = top.data;
             this.size = this.size - 1;
             this.top = this.top.next;
         }
-        return min_value;
+        return currentHead;
     }
 
     @Override
     public int peek() {
+        int peekStack = Integer.MAX_VALUE;
         if (isEmpty()) {
+            System.out.println("stack is empty");
         }
-        return top.data;
+        else {peekStack = top.data;
+        }
+        return peekStack;
     }
 }
 
@@ -82,10 +85,10 @@ class Popo {
                     System.out.println("empty of stack is " + stack.isEmpty());
             }
             if (num == 4){
-                System.out.println(" size of stack is  " + stack.size());
+                System.out.println("size of stack is  " + stack.size());
             }
             if (num == 5){
-                System.out.println(" head of stack  " + stack.peek());
+                System.out.println("head of stack  " + stack.peek());
             }
         }
     }
