@@ -8,7 +8,7 @@ public interface StackInterface {
     int size();
 
     //кладет занчение в стек
-    void push(int val);
+    int push(int val);
 
     //возвращает последний элемент стека и убирает его из стека (так же если стек пустой и для него вызвана pop(), то нужно опрокинуть ошибку)
     int pop();
