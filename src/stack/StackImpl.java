@@ -39,10 +39,9 @@ public class StackImpl implements StackInterface {
             );
         }
         else {
-
-            currentHead = top.data;
+            currentHead = top.getData();
             this.size = this.size - 1;
-            this.top = this.top.next;
+            this.top = this.top.getNext();
         }
         return currentHead;
     }
@@ -53,7 +52,7 @@ public class StackImpl implements StackInterface {
         if (isEmpty()) {
             System.out.println("stack is empty");
         }
-        else {peekStack = top.data;
+        else {peekStack = top.getData();
         }
         return peekStack;
     }
