@@ -1,6 +1,14 @@
 package stack;
+//тут будет реализация - начало положенио
+//public class StackImpl extends StackInterface{
+//    //верхушка стека
+//    Node top;
+//
+//    //размер стека
+//    int size;
+//}
 
-import java.util.Scanner;
+
 
 public class StackImpl implements StackInterface {
     //    //верхушка стека
@@ -96,3 +104,4 @@ class Popo {
         }
     }
 }
+
