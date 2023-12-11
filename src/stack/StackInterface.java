@@ -1,19 +1,19 @@
 package stack;
 
-public interface StackInterface {
+public interface StackInterface <T> {
     //функция проверяет пустой ли стек
-    boolean isEmpty();
+     boolean isEmpty();
 
     //возвращает длину стека
-    int size();
+      int size();
 
     //кладет занчение в стек
-    int push(int val);
+     T push(T val);
 
     //возвращает последний элемент стека и убирает его из стека (так же если стек пустой и для него вызвана pop(), то нужно опрокинуть ошибку)
-    int pop();
+     T pop();
 
     //возвращает последний элемент стека
-    int peek();
+     T peek();
 }
 

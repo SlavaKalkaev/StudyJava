@@ -1,10 +1,12 @@
 package stack;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class StackImpl implements StackInterface {
+public class StackImpl <T> implements StackInterface <T> {
     //    //верхушка стека
-    private Node top;
+    private Node  top;
     private int size;
 
 
@@ -19,25 +21,25 @@ public class StackImpl implements StackInterface {
     }
 
     @Override
-    public int size() {
-        return this.size;
+    public  int size() {
+        return  this.size;
     }
 
     @Override
-    public int push(int x) {
-        Node node = new Node(x, top);
+    public  T  push(T x) {
+        Node node = new  Node (x, top);
         top = node;
         this.size++;
-        return x;
+        return  x;
     }
 
     @Override //удaление из стека
-    public int pop() {
-        int currentHead = Integer.MIN_VALUE;
+    public T pop(){
+       T currentHead = null;
         if (isEmpty()) {
             System.out.println("nothing added in stack");
         } else {
-            currentHead = top.getData();
+            currentHead = (T) top.getData();
             this.size = this.size - 1;
             this.top = this.top.getNext();
         }
@@ -45,20 +47,20 @@ public class StackImpl implements StackInterface {
     }
 
     @Override
-    public int peek() {
-        int peekStack = Integer.MIN_VALUE;
+    public T peek() {
+        T peekStack = null;
         if (isEmpty()) {
             System.out.println("stack is empty");
         } else {
-            peekStack = top.getData();
+            peekStack = (T) top.getData();
         }
         return peekStack;
     }
 }
 
 class Popo {
-    public static void main(String[] args) {
-        StackImpl stack = new StackImpl();
+    public static <T> void main(String[] args) throws IOException{
+        StackImpl <T> stack = new StackImpl();
         while (true) {
             System.out.println("Variants of operations ");
             System.out.println("1 - delete from stack");
@@ -68,30 +70,34 @@ class Popo {
             System.out.println("5 - wanna know head of stack");
             System.out.println("Enter number of operations ");
             Scanner s = new Scanner(System.in);
-            int num = s.nextInt();
-            if (num == 1) {
-                int b = stack.pop();
-                if (b != Integer.MIN_VALUE){
-                    System.out.println("delete from stack " + b);
+            try {
+                int num = (s.nextInt());
+                if (num == 1) {
+                    T b = stack.pop();
+                    if (b != null){
+                        System.out.println("delete from stack " + b);
+                    }
                 }
-            }
-            if (num == 2) {
-                System.out.println("write number you want to add");
-                Scanner in = new Scanner(System.in);
-                int x = in.nextInt();
-                System.out.println("add in stack " + stack.push(x));
-            }
-            if (num == 3) {
-                System.out.println("empty of stack is " + stack.isEmpty());
-            }
-            if (num == 4) {
-                System.out.println("size of stack is  " + stack.size());
-            }
-            if (num == 5) {
-                int a = stack.peek();
-                if (a != Integer.MIN_VALUE){
-                    System.out.println("head of stack  " + a);
+                if (num == 2) {
+                    System.out.println("write number you want to add");
+                    Scanner in = new Scanner(System.in);
+                    T x = (T) in.next();
+                    System.out.println("add in stack " + stack.push(x));
                 }
+                if (num == 3) {
+                    System.out.println("empty of stack is " + stack.isEmpty());
+                }
+                if (num == 4) {
+                    System.out.println("size of stack is  " + stack.size());
+                }
+                if (num == 5) {
+                    T a = stack.peek();
+                    if (a != null){
+                        System.out.println("head of stack  " + a);
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error, enter int type");
             }
         }
     }
