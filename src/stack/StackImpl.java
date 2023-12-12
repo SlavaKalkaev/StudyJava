@@ -63,11 +63,11 @@ class Popo {
         StackImpl <T> stack = new StackImpl();
         while (true) {
             System.out.println("Variants of operations ");
-            System.out.println("1 - delete from stack");
-            System.out.println("2 - add in stack");
-            System.out.println("3 - stack is empty ?");
-            System.out.println("4 - wanna know stack size");
-            System.out.println("5 - wanna know head of stack");
+            System.out.println("1 - Delete from stack");
+            System.out.println("2 - Add in stack");
+            System.out.println("3 - Stack is empty ?");
+            System.out.println("4 - Wanna know stack size");
+            System.out.println("5 - Wanna know head of stack");
             System.out.println("Enter number of operations ");
             Scanner s = new Scanner(System.in);
             try {

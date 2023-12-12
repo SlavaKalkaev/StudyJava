@@ -9,13 +9,13 @@ public class Node <T> {
         this.data = data;
         this.next = next;
     }
-    public void setData(T data){
+    public void setData(T  data){
         this.data = data;
     }
     public T getData(){
         return data;
     }
-    public void setNext(Node next){
+    public void setNext(Node  next){
         this.data = data;
     }
     public Node getNext(){
