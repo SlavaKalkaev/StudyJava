@@ -8,6 +8,9 @@ public interface QueueInterface<T> {
     //функция проверяет полна ли очередь
     boolean isFull();
 
+    //возвращает длину очереди
+    int size();
+
     //кладет значение в очередь
     void enqueue(T item);
 
