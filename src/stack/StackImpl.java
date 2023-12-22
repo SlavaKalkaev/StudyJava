@@ -56,14 +56,17 @@ public class StackImpl<T> implements StackInterface<T> {
         }
         return peekStack;
     }
+
+    @Override
     public String toString() {
         return stringCollector(top);
     }
+
     private String stringCollector(Node currentTop) {
         if (currentTop == null) {
             return "null";
         } else {
-            return stringCollector(currentTop.getNext())+"<-"+ currentTop.getData().toString();
+            return stringCollector(currentTop.getNext()) + "<-" + currentTop.getData().toString();
         }
     }
 }
@@ -82,41 +85,35 @@ class Popo {
             System.out.println("Enter number of operations ");
             Scanner s = new Scanner(System.in);
             try {
-
                 int num = (s.nextInt());
-                    if(num== NumOfOperations.DELETE.getCode()){
+                if (num == NumOfOperations.DELETE.getCode()) {
                     Integer b = stack.pop();
                     if (b != null) {
                         System.out.println("delete from stack " + b);
                     }
-                }
-                if (num == NumOfOperations.ADD.getCode()) {
+                } else if (num == NumOfOperations.ADD.getCode()) {
                     System.out.println("write number you want to add");
                     Scanner in = new Scanner(System.in);
                     int x = in.nextInt();
                     System.out.println("add in stack " + stack.push(x));
-                }
-                if (num == NumOfOperations.EMPTY.getCode()) {
+                } else if (num == NumOfOperations.EMPTY.getCode()) {
                     System.out.println("empty of stack is " + stack.isEmpty());
-                }
-                if (num == NumOfOperations.SIZE.getCode()) {
+                } else if (num == NumOfOperations.SIZE.getCode()) {
                     System.out.println("size of stack is  " + stack.size());
-                }
-                if (num == NumOfOperations.HEAD.getCode()) {
+                } else if (num == NumOfOperations.HEAD.getCode()) {
                     Integer a = stack.peek();
                     if (a != null) {
                         System.out.println("head of stack  " + a);
                     }
-                }
-                if (num == NumOfOperations.VIEW.getCode()) {
+                } else if (num == NumOfOperations.VIEW.getCode()) {
                     System.out.println(stack);
                 } else {
                     System.out.println("enter the number from 1 to 5");
 
                 }
-            } catch(InputMismatchException e){
-            System.out.println("Error, enter int type");
-        }
+            } catch (InputMismatchException e) {
+                System.out.println("Error, enter int type");
+            }
         }
     }
 }
