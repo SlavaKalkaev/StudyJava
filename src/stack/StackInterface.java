@@ -15,4 +15,5 @@ public interface StackInterface <T> {
 
     //возвращает последний элемент стека
     T peek();
+    String toString();
 }

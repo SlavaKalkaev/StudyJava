@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class StackImpl <T> implements StackInterface <T> {
+public class StackImpl<T> implements StackInterface<T> {
     //    //верхушка стека
-    private Node  top;
+    private Node top;
     private int size;
 
 
@@ -21,26 +21,26 @@ public class StackImpl <T> implements StackInterface <T> {
     }
 
     @Override
-    public  int size() {
-        return  this.size;
+    public int size() {
+        return this.size;
     }
 
     @Override
-    public  T  push(T x) {
-        Node node = new  Node (x, top);
+    public T push(T x) {
+        Node node = new Node(x, top);
         top = node;
         this.size++;
-        return  x;
+        return x;
     }
 
     @Override //удaление из стека
-    public T pop(){
+    public T pop() {
         T currentHead = null;
         if (isEmpty()) {
             System.out.println("nothing added in stack");
         } else {
             currentHead = (T) top.getData();
-            this.size = this.size - 1;
+            this.size--;
             this.top = this.top.getNext();
         }
         return currentHead;
@@ -56,11 +56,21 @@ public class StackImpl <T> implements StackInterface <T> {
         }
         return peekStack;
     }
+    public String toString() {
+        return stringCollector(top);
+    }
+    private String stringCollector(Node currentTop) {
+        if (currentTop == null) {
+            return "null";
+        } else {
+            return stringCollector(currentTop.getNext())+"<-"+ currentTop.getData().toString();
+        }
+    }
 }
 
 class Popo {
-    public static <T> void main(String[] args) throws IOException{
-        StackImpl <T> stack = new StackImpl();
+    public static <T> void main(String[] args) throws IOException {
+        StackImpl<Integer> stack = new StackImpl();
         while (true) {
             System.out.println("Variants of operations ");
             System.out.println("1 - delete from stack");
@@ -68,37 +78,45 @@ class Popo {
             System.out.println("3 - stack is empty ?");
             System.out.println("4 - wanna know stack size");
             System.out.println("5 - wanna know head of stack");
+            System.out.println("6 - view of stack");
             System.out.println("Enter number of operations ");
             Scanner s = new Scanner(System.in);
             try {
+
                 int num = (s.nextInt());
-                if (num == 1) {
-                    T b = stack.pop();
-                    if (b != null){
+                    if(num== NumOfOperations.DELETE.getCode()){
+                    Integer b = stack.pop();
+                    if (b != null) {
                         System.out.println("delete from stack " + b);
                     }
                 }
-                if (num == 2) {
+                if (num == NumOfOperations.ADD.getCode()) {
                     System.out.println("write number you want to add");
                     Scanner in = new Scanner(System.in);
-                    T x = (T) in.next();
+                    int x = in.nextInt();
                     System.out.println("add in stack " + stack.push(x));
                 }
-                if (num == 3) {
+                if (num == NumOfOperations.EMPTY.getCode()) {
                     System.out.println("empty of stack is " + stack.isEmpty());
                 }
-                if (num == 4) {
+                if (num == NumOfOperations.SIZE.getCode()) {
                     System.out.println("size of stack is  " + stack.size());
                 }
-                if (num == 5) {
-                    T a = stack.peek();
-                    if (a != null){
+                if (num == NumOfOperations.HEAD.getCode()) {
+                    Integer a = stack.peek();
+                    if (a != null) {
                         System.out.println("head of stack  " + a);
                     }
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Error, enter int type");
-            }
+                if (num == NumOfOperations.VIEW.getCode()) {
+                    System.out.println(stack);
+                } else {
+                    System.out.println("enter the number from 1 to 5");
+
+                }
+            } catch(InputMismatchException e){
+            System.out.println("Error, enter int type");
+        }
         }
     }
 }
