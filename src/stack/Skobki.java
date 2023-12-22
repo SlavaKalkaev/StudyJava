@@ -8,7 +8,7 @@ public class Skobki {
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == '(') {
                 stack.push(text.charAt(i));
-            } else if (!stack.isEmpty() && text.charAt(i) == '(') {
+            } else if (!stack.isEmpty() && text.charAt(i) == ')') {
                 stack.pop();
             } else {
                 return false;
