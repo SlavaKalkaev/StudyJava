@@ -12,14 +12,15 @@ public interface QueueInterface<T> {
     int size();
 
     //кладет значение в очередь
-    void enqueue(T item);
+    int enqueue(int item);
 
     //возвращает первый элемент очереди и убирает его из очереди
     //(так же если очередь пустой, то нужно опрокинуть ошибку)
-    T dequeue();
+    int dequeue();
 
     //возвращает первый элемент очереди
-    T peek();
+    int peek();
 
     //еще метод toString
+    String toString();
 }
