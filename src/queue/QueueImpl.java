@@ -1,116 +1,112 @@
-package doublylinkedlist;
-
-import queue.QueueInterface;
+package queue;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class QueueImpl <T> implements QueueInterface<T> {
-    public int size = 5;
+public class QueueImpl implements QueueInterface {
+    private int currentSize;
+    private int maxSize;
     private int front;
     private int rear;
-     int queueList [] = new int [size];;
-      public QueueImpl(){
-        front = -1 ;
-        rear = -1 ;
+    private int[] queueList;
+
+    public QueueImpl(int maxSize) {
+        front = -1;
+        rear = -1;
+        currentSize = 0;
+        this.maxSize = maxSize;
+        queueList = new int[maxSize];
     }
+
     @Override
     public boolean isEmpty() {
-        if (front == -1 &&  rear ==-1)
-        return true;
-        else
-        return false;
+        return currentSize == 0;
     }
 
     @Override
     public boolean isFull() {
-        if (front == 0 && rear == size - 1) {
-            return true;
-        }
-        else
-        return false;
+        return currentSize == maxSize;
     }
 
     @Override
-    public int size()  {
-        return  size;
+    public int size() {
+        return currentSize;
     }
 
     @Override
     public int enqueue(int item) {
-        if (isFull()){
+        if (isFull()) {
             System.out.println("AAAAAAAAAAA Q IS FULL AAAAAAAAAAAAAA");
-            return 0;
+            dequeue();
         }
-        else {
-            if (front == -1){
-                front = 0;
-            }
-            rear = (rear + 1) % size();
-            queueList[rear] = item;
-            return item;
+        if (front == -1) {
+            front = 0;
         }
+        rear = (rear + 1) % maxSize;
+        queueList[rear] = item;
+        currentSize++;
+        return item;
     }
 
     @Override
-    public int dequeue() {
+    public Integer dequeue() {
         int element;
         if (isEmpty()) {
             System.out.println("empty");
-            return (-1);
+            return null;
         } else {
             element = queueList[front];
             if (front == rear) {
                 front = -1;
                 rear = -1;
+            } else {
+                front = (front + 1) % maxSize;
             }
-            else {
-                front = (front + 1) % size;
-            }
+            currentSize--;
             return (element);
         }
 
     }
 
     @Override
-    public int peek() {
-        if (front == -1){
-            System.out.println("nothing");
+    public Integer peek() {
+        if (!isEmpty()) {
+            return null;
         }
         return queueList[front];
     }
+
     @Override
     public String toString() {
         return stringCollector();
     }
-//    public int dsds(int fir){
-//          fir =
-//          fir = (front + 1) % size;
-//        return fir;
-//    }
+
     public String stringCollector() {
         StringBuilder builder = new StringBuilder();
         String res;
-        if (front == -1) {
-            return "empty";
-        } else {
-            for (int currentFront = 0; currentFront < queueList.length; currentFront++) {
-                if (currentFront == rear) {
-                    return queueList[rear] + "->";
-                }
-                builder.append(queueList[currentFront]);
-                builder.append("->");
+        if (!isEmpty()) {
+            int i = front;
+            int count = 0;
+            while (count < currentSize) {
+                builder.append(queueList[i] + " -> ");
+                i = (i + 1) % maxSize;
+                count++;
             }
-            res = builder.toString();
-        }
+        } else {
+            return "empty";}
+        builder.delete(builder.length() - 3, builder.length());
+        res = builder.toString();
         return res;
     }
 }
+
 class Popa {
     public static <T> void main(String[] args) throws IOException {
-        QueueImpl<Integer> queue = new QueueImpl();
+        QueueImpl queue = new QueueImpl(5);
         while (true) {
+            System.out.println("Enter size of q");
+            Scanner m = new Scanner(System.in);
             System.out.println("Variants of operations ");
             System.out.println("1 - delete ");
             System.out.println("2 - add ");
@@ -125,7 +121,7 @@ class Popa {
                 int num = (s.nextInt());
                 if (num == 1) {
                     Integer b = queue.dequeue();
-                    if (b != 0) {
+                    if (b != null) {
                         System.out.println("delete from q " + b);
                     }
                 } else if (num == 2) {
@@ -134,7 +130,7 @@ class Popa {
                     int x = inside.nextInt();
                     Integer a = queue.enqueue(x);
                     if (a != 0)
-                    System.out.println("add in q " + a);
+                        System.out.println("add in q " + a);
                 } else if (num == 3) {
                     System.out.println("empty of q is " + queue.isEmpty());
                 } else if (num == 4) {

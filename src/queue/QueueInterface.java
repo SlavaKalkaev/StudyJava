@@ -16,11 +16,10 @@ public interface QueueInterface<T> {
 
     //возвращает первый элемент очереди и убирает его из очереди
     //(так же если очередь пустой, то нужно опрокинуть ошибку)
-    int dequeue();
+    Integer dequeue();
 
     //возвращает первый элемент очереди
-    int peek();
+    Integer peek();
 
     //еще метод toString
-    String toString();
 }
