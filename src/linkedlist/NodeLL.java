@@ -2,16 +2,16 @@ package linkedlist;
 
 public class NodeLL <T> {
     private T data;
-    private NodeLL next;
+    private NodeLL<T> next;
 
     public NodeLL(
             T data,
-            NodeLL next) {
+            NodeLL<T> next) {
         this.data = data;
         this.next = next;
     }
     public NodeLL(
-            NodeLL next) {
+            NodeLL<T> next) {
         this.next = next;
     }
     public NodeLL(
@@ -26,11 +26,11 @@ public class NodeLL <T> {
         return data;
     }
 
-    public void setNext(NodeLL next) {
+    public void setNext(NodeLL<T> next) {
         this.next = next;
     }
 
-    public NodeLL getNext() {
+    public NodeLL<T> getNext() {
         return next;
     }
 }

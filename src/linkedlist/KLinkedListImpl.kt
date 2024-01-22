@@ -13,8 +13,8 @@ class KLinkedListImpl<T> : LinkedListInterface<T> {
         } else {
             while (currentNode?.next != null) {
                 currentNode = currentNode.next
-                currentNode?.next = node
             }
+            currentNode?.next = node
         }
         size++
     }
@@ -60,7 +60,7 @@ class KLinkedListImpl<T> : LinkedListInterface<T> {
             println("index out of bounds")
         } else {
             if (index == 0) {
-                head = head?.next as NodeLL<T>?
+                head = head?.next
             } else {
                 var currentNode: NodeLL<T>? = head
                 for (i in 0..index - 1) {
