@@ -17,7 +17,7 @@ public class LinkedListImpl<T> implements LinkedListInterface<T> {
         if (head == null) {
             head = node;
         } else {
-            while (head.getNext() != null) {
+            while (currentNode.getNext() != null) {
                 currentNode = currentNode.getNext();
             }
             currentNode.setNext(node);
