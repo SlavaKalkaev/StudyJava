@@ -1,30 +1,27 @@
 package linkedlist
 
-class KLinkedListImpl<T : Any> : LinkedListInterface<T> {
+class KLinkedListImpl<T> : LinkedListInterface<T> {
     private var head: NodeLL<T>? = null
     private val tail: NodeLL<T>? = null
-    private var size: Int = 0
-
-    constructor() {
-        head = null
-        size = 0
-    }
+    var size: Int = 0
 
     override fun add(data: T) {
         var currentNode: NodeLL<T>? = head
-        val node = NodeLL(data)
+        val node: NodeLL<T> = NodeLL<T>(data)
         if (head == null) {
             head = node
         } else {
-            currentNode = currentNode?.next as NodeLL<T>?
-            currentNode?.setNext(node)
+            while (currentNode?.next != null) {
+                currentNode = currentNode.next
+                currentNode?.next = node
+            }
         }
-        this.size++
+        size++
     }
 
     override fun add(index: Int, data: T) {
         val left: NodeLL<T>? = head
-        var node = NodeLL(data)
+        var node: NodeLL<T> = NodeLL<T>(data)
         if (size() < index) {
             println("index out of bounds")
         } else {
@@ -32,14 +29,13 @@ class KLinkedListImpl<T : Any> : LinkedListInterface<T> {
                 node.next = head
                 head = node
             } else {
-                for (i in 0..(index - 1)) {
-                    node = node.next as NodeLL<T>
+                for (i in 0..index - 1) {
+                    node = node.next
                 }
-                if (left != null) {
-                    node.next = left.next
-                }
+                node.next = left?.next
+                left?.next = node
             }
-            this.size++
+            size++
         }
     }
 
@@ -53,7 +49,7 @@ class KLinkedListImpl<T : Any> : LinkedListInterface<T> {
             return null
         } else {
             for (i in 0..index) {
-                currentHead = currentHead?.next as NodeLL<T>?
+                currentHead = currentHead?.next
             }
         }
         return currentHead?.data
@@ -67,19 +63,20 @@ class KLinkedListImpl<T : Any> : LinkedListInterface<T> {
                 head = head?.next as NodeLL<T>?
             } else {
                 var currentNode: NodeLL<T>? = head
-                for (i in 0..(index - 1)) {
-                    currentNode = currentNode?.next as NodeLL<T>?
+                for (i in 0..index - 1) {
+                    currentNode = currentNode?.next
                 }
                 currentNode?.setNext(currentNode.next.next)
             }
-            this.size--
+            size--
         }
     }
+
     private fun stringCollector(currentNode: NodeLL<T>?): String {
         return if (currentNode == null) {
             "null"
         } else {
-            currentNode.data.toString() + "->" + stringCollector(currentNode.next as NodeLL<T>?)
+            currentNode.data.toString() + "->" + stringCollector(currentNode.next)
         }
     }
 
@@ -89,10 +86,10 @@ class KLinkedListImpl<T : Any> : LinkedListInterface<T> {
 }
 
 
-    fun main(args: Array<String>) {
-        var list: LinkedListImpl<Int?> = LinkedListImpl<Int?>()
-        list.add(1)
-        list.add(2)
-        list.add(0, 4)
-        println(list)
-    }
+fun main(args: Array<String>) {
+    var list: LinkedListImpl<Int?> = LinkedListImpl<Int?>()
+    list.add(1)
+    list.add(2)
+    list.add(0, 4)
+    println(list)
+}
