@@ -66,7 +66,7 @@ class KLinkedListImpl<T> : LinkedListInterface<T> {
                 for (i in 0..index - 1) {
                     currentNode = currentNode?.next
                 }
-                currentNode?.setNext(currentNode.next.next)
+                currentNode?.next= currentNode?.next?.next
             }
             size--
         }
