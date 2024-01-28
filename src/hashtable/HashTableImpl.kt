@@ -24,7 +24,9 @@ class HashTableImpl<K, V> : HashTableInterface<K, V> {
         val index = hash(key)
         val bucket = buckets[index]
         for (el in bucket) {
-            pairBucket.add(Pair(el.first, el.second))
+            if (key == el.first) {
+                pairBucket.add(Pair(el.first, el.second))
+            }
         }
         return pairBucket
     }
@@ -144,6 +146,7 @@ fun main(args: Array<String>) {
     println(hashTable.values())
     hashTable.remove("andrey")
     println(hashTable)
+    println(hashTable.get("sla"))
     hashTable.clear()
     println(hashTable)
 }
