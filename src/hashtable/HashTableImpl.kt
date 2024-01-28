@@ -19,16 +19,16 @@ class HashTableImpl<K, V> : HashTableInterface<K, V> {
         currentSize++
     }
 
-    override fun get(key: K): MutableList<Pair<K, V>> {
-        val pairBucket = mutableListOf<Pair<K, V>>()
+    override fun get(key: K): V? {
+        val a = null
         val index = hash(key)
         val bucket = buckets[index]
         for (el in bucket) {
             if (key == el.first) {
-                pairBucket.add(Pair(el.first, el.second))
+                 return  el.second
             }
         }
-        return pairBucket
+        return a
     }
 
     override fun remove(key: K) {
@@ -146,7 +146,7 @@ fun main(args: Array<String>) {
     println(hashTable.values())
     hashTable.remove("andrey")
     println(hashTable)
-    println(hashTable.get("sla"))
+    println(hashTable.get("nik"))
     hashTable.clear()
     println(hashTable)
 }
