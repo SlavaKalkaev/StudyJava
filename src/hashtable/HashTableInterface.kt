@@ -6,7 +6,7 @@ interface HashTableInterface<K, V> {
 
     fun put(key: K, value: V)
 
-    fun get(key: K): V?
+    fun get(key: K): MutableList<Pair<K, V>>
 
     fun remove(key: K)
 

@@ -2,6 +2,7 @@ package linkedlist;
 
 interface LinkedListInterface<T> {
 
+
     //добавляет в конец списка элемент
     void add(T data);
 
