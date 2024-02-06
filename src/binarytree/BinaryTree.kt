@@ -1,12 +1,14 @@
 package binarytree
 
+import linkedlist.NodeLL
+
 interface BinaryTree {
 
     fun insert(data: Int)
 
     // private fun insertRec(node: Node?, key: Int): Node
 
-    fun search(data: Int): Node?
+    fun search(data: Int): TreeNode?
 
     // private fun searchRec(node: Node?, key: Int): Node?
 
@@ -16,7 +18,7 @@ interface BinaryTree {
 
     // private fun findMin(node: Node?): Node?
 
-    fun dfs(): List<Int> // тут тип данных можно поменять, dfs будет юзаться в toString
+    fun dfs(): String // тут тип данных можно поменять, dfs будет юзаться в toString
 
     // private fun dfsRec(node: Node?, result: MutableList<Int>)
 
