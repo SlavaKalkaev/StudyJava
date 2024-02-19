@@ -2,9 +2,9 @@ package graph
 
 interface Graph {
 
-    fun addVertex()
+    fun addVertex() //вершина
 
-    fun addEdge(vertex1: Int, vertex2: Int, weight: Int)
+    fun addEdge(vertex1: Int, vertex2: Int, weight: Int) // ребро
 
     fun removeVertex(vertex: Int)
 
