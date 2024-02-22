@@ -110,25 +110,29 @@ class GraphImpl : Graph {
 
         return minDistances
     }
+
+    fun deikstra(vertex1: Int, vertex2: Int):Int {
+       return dijkstra(vertex1)[vertex2]
+    }
 }
 
-    fun main() {
-        val graph = GraphImpl()
-        graph.addVertex()
-        graph.addVertex()
-        graph.addVertex()
-        graph.addVertex()
-        graph.addVertex()
-        graph.addEdge(1 - 1, 2 - 1, 10)
-        graph.addEdge(1 - 1, 5 - 1, 100)
-        graph.addEdge(1 - 1, 4 - 1, 30)
-        graph.addEdge(2 - 1, 3 - 1, 50)
-        graph.addEdge(3 - 1, 5 - 1, 10)
-        graph.addEdge(4 - 1, 3 - 1, 20)
-        graph.addEdge(4 - 1, 5 - 1, 60)
-        graph.printGraphAsMatrix()
-        graph.printGraphAsGraphViz()
-        println(graph.dijkstra(0))
-    }
+fun main() {
+    val graph = GraphImpl()
+    graph.addVertex()
+    graph.addVertex()
+    graph.addVertex()
+    graph.addVertex()
+    graph.addVertex()
+    graph.addEdge(1 - 1, 2 - 1, 10)
+    graph.addEdge(1 - 1, 5 - 1, 100)
+    graph.addEdge(1 - 1, 4 - 1, 30)
+    graph.addEdge(2 - 1, 3 - 1, 50)
+    graph.addEdge(3 - 1, 5 - 1, 10)
+    graph.addEdge(4 - 1, 3 - 1, 20)
+    graph.addEdge(4 - 1, 5 - 1, 60)
+    graph.printGraphAsMatrix()
+    graph.printGraphAsGraphViz()
+    println(graph.dijkstra(0))
+}
 
 
