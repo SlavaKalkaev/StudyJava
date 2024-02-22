@@ -70,7 +70,7 @@ class GraphImpl : Graph {
     private fun dfs(vertex: Int, visited: MutableList<Boolean>) {
         visited[vertex] = true
         for (i in getNeighbors(vertex)) {
-            println("$vertex -> $i"+ "[label=\"${graph[vertex][i]}\"];")
+            println("$vertex -> $i" + "[label=\"${graph[vertex][i]}\"];")
             if (!visited[i]) {
                 dfs(i, visited)
             }
@@ -87,22 +87,48 @@ class GraphImpl : Graph {
         }
         println("}")
     }
+
+    fun dijkstra(startVertex: Int): List<Int> {
+        val minDistances = MutableList(size) { Int.MAX_VALUE }
+        val visited = MutableList(size) { false }
+        minDistances[startVertex] = 0
+
+        for (i in 0 until size - 1) {
+            var minVertex = -1
+            for (j in 0 until size) {
+                if (!visited[j] && (minVertex == -1 || minDistances[j] < minDistances[minVertex])) {
+                    minVertex = j
+                }
+            }
+            visited[minVertex] = true
+            for (u in 0 until size) {
+                if (getWeight(minVertex, u) != 0 && minDistances[minVertex] != Int.MAX_VALUE && minDistances[minVertex] + getWeight(minVertex, u) < minDistances[u]) {
+                    minDistances[u] = minDistances[minVertex] + getWeight(minVertex, u)
+                }
+            }
+        }
+
+        return minDistances
+    }
 }
 
+    fun main() {
+        val graph = GraphImpl()
+        graph.addVertex()
+        graph.addVertex()
+        graph.addVertex()
+        graph.addVertex()
+        graph.addVertex()
+        graph.addEdge(1 - 1, 2 - 1, 10)
+        graph.addEdge(1 - 1, 5 - 1, 100)
+        graph.addEdge(1 - 1, 4 - 1, 30)
+        graph.addEdge(2 - 1, 3 - 1, 50)
+        graph.addEdge(3 - 1, 5 - 1, 10)
+        graph.addEdge(4 - 1, 3 - 1, 20)
+        graph.addEdge(4 - 1, 5 - 1, 60)
+        graph.printGraphAsMatrix()
+        graph.printGraphAsGraphViz()
+        println(graph.dijkstra(0))
+    }
 
-fun main() {
-    val graph = GraphImpl()
-    graph.addVertex()
-    graph.addVertex()
-    graph.addVertex()
-    graph.addEdge(0, 1, 4)
-    graph.addEdge(1, 1, 3)
-    graph.addEdge(0, 2, 8)
-    graph.addVertex()
-//    println(graph.getNeighbors(1))
-    graph.addEdge(3, 1, 2)
-//    println(graph.getNeighbors(0))
-    graph.printGraphAsMatrix()
-    graph.printGraphAsGraphViz()
-}
 
