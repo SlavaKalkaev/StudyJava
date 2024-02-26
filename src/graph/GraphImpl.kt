@@ -70,10 +70,17 @@ class GraphImpl : Graph {
     private fun dfs(vertex: Int, visited: MutableList<Boolean>) {
         visited[vertex] = true
         for (i in getNeighbors(vertex)) {
-            println("$vertex -> $i" + "[label=\"${graph[vertex][i]}\"];")
+            var color = "black"
             if (!visited[i]) {
                 dfs(i, visited)
             }
+            val shortestPath = shortPath(0, graph.size - 1)
+            for (j in 0 .. shortestPath.size-2){
+                if ("${shortestPath[j]} -> ${shortestPath[j+1]}" == "$vertex -> $i"){
+                    color = "red"
+                }
+            }
+            println("$vertex -> $i [label=\"${graph[vertex][i]}\", color=$color];")
         }
     }
 
@@ -111,8 +118,37 @@ class GraphImpl : Graph {
         return minDistances
     }
 
-    fun deikstra(vertex1: Int, vertex2: Int):Int {
-       return dijkstra(vertex1)[vertex2]
+    fun shortPath(start: Int, end: Int): List<Int> {
+        val distances = dijkstra(start)
+        val path = mutableListOf<Int>()
+        var currentVertex = end
+
+        while (currentVertex != start) {
+            path.add(currentVertex)
+            currentVertex = getPreviousVertex(currentVertex, distances)
+            if (currentVertex == -1) break
+        }
+
+        path.add(start)
+        path.reverse()
+        return path
+    }
+
+    private fun getPreviousVertex(vertex: Int, distances: List<Int>): Int {
+        var previousVertex = -1
+        var minDistance = Int.MAX_VALUE
+
+        for (i in 0 until size) {
+            if (getWeight(i, vertex) != 0 && distances[i] + getWeight(i, vertex) == distances[vertex] && distances[i] < minDistance) {
+                minDistance = distances[i]
+                previousVertex = i
+            }
+        }
+        return previousVertex
+    }
+
+    fun dijkstra(vertex1: Int, vertex2: Int): Int {
+        return dijkstra(vertex1)[vertex2]
     }
 }
 
@@ -133,6 +169,7 @@ fun main() {
     graph.printGraphAsMatrix()
     graph.printGraphAsGraphViz()
     println(graph.dijkstra(0))
+    println(graph.shortPath(0, 4))
 }
 
 

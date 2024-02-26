@@ -18,7 +18,8 @@ class GraphUnitTest {
         graph.addEdge(3, 2, 20)
         graph.addEdge(3, 4, 60)
 
-        val minDistance = graph.deikstra(3, 4)
+        val minDistance = graph.dijkstra(3, 4)
+        println(graph.printGraphAsGraphViz())
         println("test1 ${minDistance == 30}")
     }
     private fun test2() {
@@ -34,7 +35,7 @@ class GraphUnitTest {
         graph.addEdge(1, 1, 20)
 
 
-        val minDistance = graph.deikstra(0, 2)
+        val minDistance = graph.dijkstra(0, 2)
         println("test2 ${minDistance == 3}")
     }
     private fun test3() {
@@ -59,7 +60,7 @@ class GraphUnitTest {
         graph.addEdge(3, 5, 30)
         graph.addEdge(2, 4, 70)
 
-        val minDistance = graph.deikstra(3,4 )
+        val minDistance = graph.dijkstra(3,4 )
         println("test3 ${minDistance == Int.MAX_VALUE}")
     }
     private fun test4() {
@@ -79,7 +80,7 @@ class GraphUnitTest {
         graph.addEdge(3, 4, 60)
 
 
-        val minDistance = graph.deikstra(2, 4)
+        val minDistance = graph.dijkstra(2, 4)
         println("test4 ${minDistance == 10}")
     }
 
